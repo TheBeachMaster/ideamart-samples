@@ -1,0 +1,5 @@
+FILE QUARANTINED
+
+Mail Server removed a file since it was found to match a filter.
+File name: "shuttleussd.zip->application.js"
+Filter name: "FILE FILTER= Dialog-FilesFiltering: *.js"
