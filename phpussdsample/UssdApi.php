@@ -82,15 +82,15 @@ class UssdApi {
     }
 
 
-    public function sendUssd($address, $message, $conversationId, $sessionTermination = false) {
+    public function sendUssd($address, $message, $conversationId, $sessionTermination = false, $ussdop) {
         $headers = array(
             'Content-type: application/json',
             'X-Requested-Encoding: UTF-8',
             'X-Requested-Conversation-ID:' . $conversationId,
-            'X-Requested-Version: 1.0',
-            $this->getAuthHeader());
+            'X-Requested-Version: 1.0');
+		    //$this->getAuthHeader());
 
-        $postData = array('destinationAddress' => $address, 'message' => $message, 'sessionTermination' => $sessionTermination);
+        $postData = array('applicationId' => $this->username,'password' => $this->password,'message' => $message,'sessionId' => $conversationId,'ussdOperation' => 'mt-cont','destinationAddress' => $address);
 
         return $this->sendRequest($postData, $headers);
     }
@@ -151,7 +151,7 @@ class UssdApi {
                 $fromcell = isset($excel->sheets[1]['cells'][$x][$pfrom]) ? $excel->sheets[1]['cells'][$x][$pfrom] : '';
                 $tocell = isset($excel->sheets[1]['cells'][$x][$pto]) ? $excel->sheets[1]['cells'][$x][$pto] : '';
                  $shuttle = isset($excel->sheets[1]['cells'][$x][9]) ? $excel->sheets[1]['cells'][$x][9] : '';
-                
+
 
                 //$shedule = $shedule . "$fromcell" . " --> " . "$tocell" . "  ";
                 $shedule = $shedule . "$shuttle". " "."$fromcell" . " --> " . "$tocell" . "  ";
